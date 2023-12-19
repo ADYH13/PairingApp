@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart'; //loading_animation_widget: ^1.2.0+4
+import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart'; //fan_carousel_image_slider: ^0.1.2
+import 'package:flutter_slidable/flutter_slidable.dart';//flutter_slidable: ^3.0.1
+import 'package:introduction_screen/introduction_screen.dart';//introduction_screen: ^3.1.12
 
 void main() {
   runApp(const MyApp());
