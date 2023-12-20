@@ -14,99 +14,56 @@
  *  limitations under the License.
  */
 
-
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-
-
-
+import 'package:pairingapp/setting.dart';
 
 class Homepage extends StatefulWidget {
+  const Homepage({super.key});
+
   @override
-  State createState() => _State();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _State extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: "/",
-      routes: {
-        "/": (_) => Index(),
-        "/bar": (BuildContext context) => DefaultAppBarDemo(),
-        "/custom": (BuildContext context) => CustomAppBarDemo(),
-        "/fab": (BuildContext context) => ConvexButtonDemo(),
-      },
-    );
-  }
-}
-
-class Index extends StatelessWidget {
+class _HomepageState extends State<Homepage> {
+  int currentindex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hello ConvexAppBar')),
-      body: Center(
-          child: TextButton(
-        child: Text('Click to show full example'),
-        onPressed: () => Navigator.of(context).pushNamed('/bar'),
-      )),
+      appBar: AppBar(
+          shadowColor: Colors.black,
+          elevation: 3,
+          leading: Center(),
+          centerTitle: true,
+          title: Text("PairingApp",
+              style: TextStyle(color: Colors.white, fontFamily: 'Roboto')),
+          backgroundColor: Color.fromARGB(255, 148, 3, 173)),
+      body: IndexedStack(
+        index: currentindex,
+        children: [
+          Container(
+            child: Text('page 1'),
+          ),
+          Container(
+            child: Text('page 2'),
+          ),
+          Setting()
+        ],
+      ),
       bottomNavigationBar: ConvexAppBar(
+        
         style: TabStyle.react,
+        backgroundColor: Color.fromARGB(255, 148, 3, 173),
         items: [
           TabItem(icon: Icons.list),
-          TabItem(icon: Icons.calendar_today),
-          TabItem(icon: Icons.assessment),
+          TabItem(icon: Icons.home),
+          TabItem(icon: Icons.settings),
         ],
-        initialActiveIndex: 1,
-        onTap: (int i) => print('click Index=$i'),
+        //initialActiveIndex: 1,
+        onTap: (int i) => setState(() {
+          currentindex = i;
+        }),
       ),
     );
   }
 }
-
-//DefaultAppBarDemo
-class DefaultAppBarDemo extends StatefulWidget {
-  const DefaultAppBarDemo({super.key});
-
-  @override
-  State<DefaultAppBarDemo> createState() => _DefaultAppBarDemoState();
-}
-
-class _DefaultAppBarDemoState extends State<DefaultAppBarDemo> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-//CustomAppBarDemo
-class CustomAppBarDemo extends StatefulWidget {
-  const CustomAppBarDemo({super.key});
-
-  @override
-  State<CustomAppBarDemo> createState() => _CustomAppBarDemoState();
-}
-
-class _CustomAppBarDemoState extends State<CustomAppBarDemo> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-//ConvexButtonDemo
-class ConvexButtonDemo extends StatefulWidget {
-  const ConvexButtonDemo({super.key});
-
-  @override
-  State<ConvexButtonDemo> createState() => _ConvexButtonDemoState();
-}
-
-class _ConvexButtonDemoState extends State<ConvexButtonDemo> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-

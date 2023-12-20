@@ -8,8 +8,6 @@ import 'package:pairingapp/homepage.dart';
 //import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart'; //fan_carousel_image_slider: ^0.1.2
 //import 'package:flutter_slidable/flutter_slidable.dart';//flutter_slidable: ^3.0.1
 
-
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -34,7 +32,6 @@ class IntroductionScreenExample extends StatelessWidget {
   const IntroductionScreenExample({super.key});
 
   static MaterialPageRoute route() => MaterialPageRoute(
-        
         builder: (_) => Scaffold(
           body: SafeArea(child: IntroductionScreenExample()),
         ),
@@ -48,16 +45,17 @@ class IntroductionScreenExample extends StatelessWidget {
         next: const Icon(Icons.navigate_next),
         // showBackButton: true, ! showBack and showSkip can't be both be true.
         // back: const Icon(Icons.arrow_back),
-        
+
         showSkipButton: true,
-        skip: const Text('Skip'),
-        onDone: ()=>Index(),
+        skip: const Text('skip'),
+        onDone: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Homepage())),
         done: const Text("Done"),
         dotsFlex: 3,
         pages: [
           PageViewModel(
             //! The title/body can either be strings or widgets.
-            title: "slide 1",
+            title: "Pairing App",
             body: 'Welcome to the Flutter Catalog app!',
           ),
           PageViewModel(
